@@ -370,7 +370,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: store-front
-          image: kariukii/store-front-l8:latest # Front-end store application
+          image: kariukii/store-front-L8:latest # Front-end store application
           ports:
             - containerPort: 8080 # Front-end app port
               name: store-front
@@ -519,11 +519,11 @@ spec:
             - name: AZURE_OPENAI_API_VERSION
               value: "2024-07-01-preview"
             - name: AZURE_OPENAI_DEPLOYMENT_NAME # required if using Azure OpenAI
-              value: "gpt-4-deployment"
+              value: "gpt-4"
             - name: AZURE_OPENAI_ENDPOINT # required if using Azure OpenAI
-              value: "https://algpetstoreai.openai.azure.com/"
+              value: "https://bbuyaibacking.openai.azure.com/"
             - name: AZURE_OPENAI_DALLE_ENDPOINT
-              value: "https://algpetstoreai.openai.azure.com/"
+              value: "https://bbuyaibacking.openai.azure.com/"
             - name: AZURE_OPENAI_DALLE_DEPLOYMENT_NAME
               value: "dalle-3-deployment"
             - name: OPENAI_API_KEY # always required
