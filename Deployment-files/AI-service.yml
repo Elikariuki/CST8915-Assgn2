@@ -1,93 +1,82 @@
-# Deployment for Order Service
+# Deployment for AI Service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order-service
+  name: ai-service
 spec:
-  replicas: 1 # Single replica
+  replicas: 1
   selector:
     matchLabels:
-      app: order-service
+      app: ai-service
   template:
     metadata:
       labels:
-        app: order-service
+        app: ai-service
     spec:
       nodeSelector:
         "kubernetes.io/os": linux
       containers:
-        - name: order-service
-          image: ramymohamed/order-service-l8:latest # Custom image for order service
+        - name: ai-service
+          image: ramymohamed/ai-service-l8:latest
           ports:
-            - containerPort: 3000 # Order service listens on this port
-          env: # Environment variables for configuration
-            - name: ORDER_QUEUE_HOSTNAME
-              value: "rabbitmq"
-            - name: ORDER_QUEUE_PORT
-              value: "5672"
-            - name: ORDER_QUEUE_USERNAME
-              value: "username"
-            - name: ORDER_QUEUE_PASSWORD
-              value: "password"
-            - name: ORDER_QUEUE_NAME
-              value: "orders"
-            - name: FASTIFY_ADDRESS
-              value: "0.0.0.0"
-          resources: # Resource allocation
-            requests:
-              cpu: 1m
-              memory: 50Mi
-            limits:
-              cpu: 100m
-              memory: 256Mi
-          startupProbe: # Initial health check
-            httpGet:
-              path: /health
-              port: 3000
-            failureThreshold: 5
-            initialDelaySeconds: 20
-            periodSeconds: 10
-          readinessProbe: # Ready status probe
-            httpGet:
-              path: /health
-              port: 3000
-            failureThreshold: 3
-            initialDelaySeconds: 3
-            periodSeconds: 5
-          livenessProbe: # Ongoing health check
-            httpGet:
-              path: /health
-              port: 3000
-            failureThreshold: 5
-            initialDelaySeconds: 3
-            periodSeconds: 3
-      initContainers: # Initialization container to wait for RabbitMQ
-        - name: wait-for-rabbitmq
-          image: busybox
-          command:
-            [
-              "sh",
-              "-c",
-              "until nc -zv rabbitmq 5672; do echo waiting for rabbitmq; sleep 2; done;",
-            ]
+            - containerPort: 5001
+          env:
+            - name: USE_AZURE_OPENAI # set to True for Azure OpenAI, False for Public OpenAI
+              value: "True"
+            - name: AZURE_OPENAI_API_VERSION
+              value: "2024-07-01-preview"
+            - name: AZURE_OPENAI_DEPLOYMENT_NAME # required if using Azure OpenAI
+              value: "gpt-4-deployment"
+            - name: AZURE_OPENAI_ENDPOINT # required if using Azure OpenAI
+              value: "https://algpetstoreai.openai.azure.com/"
+            - name: AZURE_OPENAI_DALLE_ENDPOINT
+              value: "https://algpetstoreai.openai.azure.com/"
+            - name: AZURE_OPENAI_DALLE_DEPLOYMENT_NAME
+              value: "dalle-3-deployment"
+            - name: OPENAI_API_KEY # always required
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api-secret
+                  key: OPENAI_API_KEY
           resources:
             requests:
-              cpu: 1m
+              cpu: 20m
               memory: 50Mi
             limits:
-              cpu: 100m
-              memory: 256Mi
+              cpu: 50m
+              memory: 128Mi
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 60
+            failureThreshold: 3
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 3
+            failureThreshold: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 3
+            failureThreshold: 10
+            periodSeconds: 10
 ---
-# Service for Order Service
+# Service for AI Service
 apiVersion: v1
 kind: Service
 metadata:
-  name: order-service
+  name: ai-service
 spec:
   type: ClusterIP
   ports:
     - name: http
-      port: 3000
-      targetPort: 3000
+      port: 5001
+      targetPort: 5001
   selector:
-    app: order-service
+    app: ai-service
