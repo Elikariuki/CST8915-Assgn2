@@ -110,6 +110,27 @@ kubectl get pods
 ```bash
 kubectl get services
 ```
+## Resources
+
+### Docker hub links
+| **Service Name**       | **Docker Hub Link**                                                                                         |
+|------------------------|-------------------------------------------------------------------------------------------------------------|
+| ai-service             | [https://hub.docker.com/repository/docker/kariukii/ai-service-l8/general](https://hub.docker.com/repository/docker/kariukii/ai-service-l8/general) |
+| product-service        | [https://hub.docker.com/repository/docker/kariukii/product-service-l8/general](https://hub.docker.com/repository/docker/kariukii/product-service-l8/general) |
+| store-front            | [https://hub.docker.com/repository/docker/kariukii/store-front-l8/general](https://hub.docker.com/repository/docker/kariukii/store-front-l8/general) |
+| store-admin            | [https://hub.docker.com/repository/docker/kariukii/store-admin-l8/general](https://hub.docker.com/repository/docker/kariukii/store-admin-l8/general) |
+| makeline-service       | [https://hub.docker.com/repository/docker/kariukii/makeline-service-l8/general](https://hub.docker.com/repository/docker/kariukii/makeline-service-l8/general) |
+| order-service          | [https://hub.docker.com/repository/docker/kariukii/order-service-l8/general](https://hub.docker.com/repository/docker/kariukii/order-service-l8/general) |
+
+### Github repos
+| **Service Name**       | **GitHub Repository Link**                                                                               |
+|------------------------|---------------------------------------------------------------------------------------------------------|
+| store-front            | [https://github.com/Elikariuki/store-front-L8.git](https://github.com/Elikariuki/store-front-L8.git)     |
+| store-admin            | [https://github.com/Elikariuki/store-admin-L8.git](https://github.com/Elikariuki/store-admin-L8.git)     |
+| order-service          | [https://github.com/Elikariuki/order-service-L8.git](https://github.com/Elikariuki/order-service-L8.git) |
+| makeline-service       | [https://github.com/Elikariuki/makeline-service-L8.git](https://github.com/Elikariuki/makeline-service-L8.git) |
+| product-service        | [https://github.com/Elikariuki/product-service-L8.git](https://github.com/Elikariuki/product-service-L8.git) |
+| ai-service             | [https://github.com/Elikariuki/ai-service-L8.git](https://github.com/Elikariuki/ai-service-L8.git)       |
 
 
 ### Challenges
