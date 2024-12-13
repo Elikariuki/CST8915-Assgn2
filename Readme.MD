@@ -134,4 +134,6 @@ kubectl get services
 
 
 ### Challenges
-Deploying the dall-e AI got an error of insufficient quota for all refions hence unable to deploy the service
+1. Deploying the dall-e AI got an error of insufficient quota for all refions hence unable to deploy the service
+2. image pulling on dockerhub - unable to pull the images from dockerhub due to default build settings to arm instead of x86
+![docker hub error](image-1.png)
