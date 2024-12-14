@@ -110,6 +110,9 @@ kubectl get pods
 ```bash
 kubectl get services
 ```
+
+## Step 6
+
 ## Resources
 
 ### Docker hub links
@@ -133,7 +136,8 @@ kubectl get services
 | ai-service             | [https://github.com/Elikariuki/ai-service-L8.git](https://github.com/Elikariuki/ai-service-L8.git)       |
 
 
-### Challenges
-1. Deploying the dall-e AI got an error of insufficient quota for all refions hence unable to deploy the service
-2. image pulling on dockerhub - unable to pull the images from dockerhub due to default build settings to arm instead of x86
+## Challenges
+1. Deploying the dall-e AI got an error of insufficient quota for all refions hence unable to deploy the service - fixed
+2. image pulling on dockerhub - unable to pull the images from dockerhub due to default build settings to arm instead of x86. -fixed
+3. Version control on requirements.txt - fixed 
 ![docker hub error](image-1.png)
