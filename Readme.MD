@@ -77,7 +77,11 @@ echo -n "<your-api-key>" | base64
 ```
 
 ## Step 4
-Deploy configMap and Secrets which will be used to connect to the Azure AI service
+1. In your secret.yaml file, add the following details
+```bash
+
+```
+2. Deploy configMap and Secrets which will be used to connect to the Azure AI service
 - Deploy ConfigMap.yaml
 
 ```bash
