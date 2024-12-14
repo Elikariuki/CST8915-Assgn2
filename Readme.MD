@@ -145,3 +145,7 @@ kubectl get services
 2. image pulling on dockerhub - unable to pull the images from dockerhub due to default build settings to arm instead of x86. -fixed
 3. Version control on requirements.txt - fixed 
 ![docker hub error](image-1.png)
+
+## Demo video
+This is the demo video of the application:
+https://algonquinlivecom-my.sharepoint.com/:v:/g/personal/kari0117_algonquinlive_com/ERSRhRl1UapOlBdtc9FayG4BdyQxfaHxuICZqHXS_Bhhsg?e=7awuO1
